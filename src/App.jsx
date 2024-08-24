@@ -1,12 +1,12 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import Groupsection from "./Components/Groupsection";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <p className="bg-slate-400">Hello how are you!</p>;
+  return (
+    <div className="flex h-screen w-screen">
+      <Groupsection />
+    </div>
+  );
 }
 
 export default App;
