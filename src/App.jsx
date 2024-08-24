@@ -6,7 +6,7 @@ import "./App.css";
 function App() {
   const [count, setCount] = useState(0);
 
-  return <p>Hello how are you!</p>;
+  return <p className="bg-slate-400">Hello how are you!</p>;
 }
 
 export default App;
