@@ -12,7 +12,7 @@ const Groups = ({ name }) => {
 
   return (
     <div className="flex items-center gap-6 ">
-      <div className="flex justify-center items-center w-16 font-normal font-roboto text-lg h-16 bg-orange-500 rounded-full text-white tracking-wider ">
+      <div className="flex justify-center self-center items-center h-16 w-16 max-h-16 font-normal font-roboto text-lg bg-orange-500 rounded-full text-white tracking-wider ">
         {initials}
       </div>
       <div className="font-normal font-roboto tracking-wide text-lg">
