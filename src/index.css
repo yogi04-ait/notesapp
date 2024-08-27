@@ -24,3 +24,8 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #555; /* Handle color on hover */
 }
+
+.custom-backdrop {
+  backdrop-filter: blur(0.5px); /* Adjust the blur value as needed */
+  background-color: rgba(0, 0, 0, 0.3); /* Adjust opacity */
+}
