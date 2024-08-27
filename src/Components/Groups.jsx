@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-const Groups = ({ name }) => {
+const Groups = ({ user }) => {
   // Split the name by spaces
+  const name = user?.name;
+  const color = user?.color;
   const nameParts = name.split(" ");
 
   // Extract the first letter of each part and convert to uppercase
@@ -11,8 +14,11 @@ const Groups = ({ name }) => {
     .join("");
 
   return (
-    <div className="flex items-center gap-6 ">
-      <div className="flex justify-center self-center items-center h-16 w-16 max-h-16 font-normal font-roboto text-lg bg-orange-500 rounded-full text-white tracking-wider ">
+    <div className="flex items-center gap-6">
+      <div
+        className="flex justify-center self-center items-center h-16 w-16 max-h-16 font-normal font-roboto text-lg rounded-full text-white tracking-wider"
+        style={{ backgroundColor: color }} // Apply background color dynamically
+      >
         {initials}
       </div>
       <div className="font-normal font-roboto tracking-wide text-lg">

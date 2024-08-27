@@ -16,7 +16,7 @@ function App() {
       <div className="w-[70%]">
         <NotesCard />
       </div>
-      {modal && <Creategroup />}
+      {modal && <Creategroup setModal={setModal} />}
     </div>
   );
 }
