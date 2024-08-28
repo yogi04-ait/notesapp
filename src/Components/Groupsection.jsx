@@ -2,7 +2,7 @@ import React from "react";
 import Groups from "./Groups";
 import { useSelector } from "react-redux";
 
-const Groupsection = ({ setModal }) => {
+const Groupsection = ({ setModal, setUser }) => {
   const users = useSelector((state) => state.userData.users);
 
   return (
@@ -10,10 +10,10 @@ const Groupsection = ({ setModal }) => {
       <h1 className="mx-auto my-10 text-3xl font-medium tracking-wide font-roboto">
         Pocket Notes
       </h1>
-      <div className="flex flex-col overflow-y-scroll h-full custom-scrollbar ">
+      <div className="flex flex-col overflow-y-scroll  h-full custom-scrollbar ">
         <div className="flex flex-col  gap-4 px-7  ">
           {users.map((user) => (
-            <Groups user={user} />
+            <Groups user={user} setUser={setUser} />
           ))}
         </div>
         <div

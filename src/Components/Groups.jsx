@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-const Groups = ({ user }) => {
+const Groups = ({ user, setUser }) => {
   // Split the name by spaces
   const name = user?.name;
   const color = user?.color;
@@ -14,7 +14,10 @@ const Groups = ({ user }) => {
     .join("");
 
   return (
-    <div className="flex items-center gap-6">
+    <div
+      className="flex items-center gap-6 cursor-pointer"
+      onClick={() => setUser(user)}
+    >
       <div
         className="flex justify-center self-center items-center h-16 w-16 max-h-16 font-normal font-roboto text-lg rounded-full text-white tracking-wider"
         style={{ backgroundColor: color }} // Apply background color dynamically

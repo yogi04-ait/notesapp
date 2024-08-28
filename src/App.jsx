@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import "./App.css";
 import Creategroup from "./Components/Creategroup";
 import Groupsection from "./Components/Groupsection";
@@ -7,14 +7,15 @@ import Screen from "./Components/Screen";
 
 function App() {
   const [modal, setModal] = useState(false);
+  const [user, setUser] = useState(null);
 
   return (
     <div className="flex h-screen w-screen">
       <div className="w-[30%]">
-        <Groupsection setModal={setModal} />
+        <Groupsection setModal={setModal} setUser={setUser} />
       </div>
       <div className="w-[70%]">
-        <NotesCard />
+        {user === null ? <Screen /> : <NotesCard user={user} />}
       </div>
       {modal && <Creategroup setModal={setModal} />}
     </div>
