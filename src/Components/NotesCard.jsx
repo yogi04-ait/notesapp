@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { IoMdSend } from "react-icons/io";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Card from "./Card";
-import { addNote } from "../features/userSlice"; // Renamed import to avoid conflict
+import { addNote, selectUserById } from "../features/userSlice";
 
-const NotesCard = ({ user }) => {
+const NotesCard = ({ userId }) => {
   const [text, setText] = useState("");
   const dispatch = useDispatch();
 
-  const { name, color, notes, id } = user;
+  // Retrieve user data from Redux store
+  const user = useSelector((state) => selectUserById(state, userId));
 
   const handleAddNote = () => {
     if (text.trim()) {
-      dispatch(addNote({ id, text }));
+      dispatch(addNote({ id: user.id, text }));
       setText("");
     }
   };
 
-  useEffect(() => {
-    // Optionally, handle side effects or logging here
-  }, [user]);
+  if (!user) {
+    return <div>No user data available.</div>;
+  }
+
+  const { name = "", color = "#FFFFFF", notes = [] } = user;
 
   const nameParts = name.split(" ");
   const initials = nameParts
@@ -40,9 +43,13 @@ const NotesCard = ({ user }) => {
       </div>
 
       <div className="flex flex-col flex-1 p-5 custom-scrollbar overflow-y-auto gap-4">
-        {notes.map((note) => (
-          <Card note={note} />
-        ))}
+        {notes.length ? (
+          notes.map((note) => (
+            <Card key={note.timestamp} note={note} /> // Ensure unique key
+          ))
+        ) : (
+          <p className="text-center text-gray-500">No notes available.</p>
+        )}
       </div>
 
       <div className="p-3 bg-[#001F8B] rounded-bl-md relative flex items-center h-44">
@@ -54,7 +61,7 @@ const NotesCard = ({ user }) => {
         />
         <IoMdSend
           className="text-[#ABABAB] cursor-pointer absolute right-7 bottom-7 text-3xl"
-          onClick={handleAddNote} // Changed to handleAddNote
+          onClick={handleAddNote}
         />
       </div>
     </div>

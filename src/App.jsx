@@ -7,15 +7,15 @@ import Screen from "./Components/Screen";
 
 function App() {
   const [modal, setModal] = useState(false);
-  const [user, setUser] = useState(null);
+  const [userId, setUserId] = useState(null);
 
   return (
     <div className="flex h-screen w-screen">
       <div className="w-[30%]">
-        <Groupsection setModal={setModal} setUser={setUser} />
+        <Groupsection setModal={setModal} setUserId={setUserId} />
       </div>
       <div className="w-[70%]">
-        {user === null ? <Screen /> : <NotesCard user={user} />}
+        {userId === null ? <Screen /> : <NotesCard userId={userId} />}
       </div>
       {modal && <Creategroup setModal={setModal} />}
     </div>

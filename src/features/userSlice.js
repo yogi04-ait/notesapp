@@ -29,9 +29,16 @@ const userSlice = createSlice({
                 };
                 user.notes.push(newNote);
             }
+        },
+        getUser: (state, action) => {
+            const { id } = action.payload;
+            const user = state.users.find(user => user.id === id);
+            return user;
         }
     }
 });
 
-export const { addUser, addNote } = userSlice.actions;
+// Selector function
+export const selectUserById = (state, id) => state.userData.users.find(user => user.id === id);
+export const { addUser, addNote, getUser } = userSlice.actions;
 export default userSlice.reducer;
