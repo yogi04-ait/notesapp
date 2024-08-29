@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { IoMdSend } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "./Card";
 import { addNote, selectUserById } from "../features/userSlice";
+import { FaArrowLeft } from "react-icons/fa";
 
-const NotesCard = ({ userId }) => {
+const NotesCard = ({ userId, setUserId }) => {
   const [text, setText] = useState("");
   const dispatch = useDispatch();
 
@@ -30,19 +31,25 @@ const NotesCard = ({ userId }) => {
     .map((part) => part.charAt(0).toUpperCase())
     .join("");
 
+  const isDisabled = text.trim().length === 0;
+
   return (
     <div className="flex flex-col h-screen bg-[#DAE5F5]">
-      <div className="flex gap-5 h-16 p-3 bg-[#001F8B]">
+      <div className="flex gap-3 sm:gap-5  p-3 bg-[#001F8B]">
+        <FaArrowLeft
+          className="self-center text-white sm:hidden"
+          onClick={() => setUserId(null)}
+        />
         <div
-          className="flex justify-center items-center h-12 w-12 font-normal text-lg rounded-full text-white tracking-wider"
+          className="flex justify-center items-center  h-12 w-12 font-normal text-lg rounded-full text-white tracking-wider"
           style={{ backgroundColor: color }}
         >
           {initials}
         </div>
-        <div className="text-xl font-medium text-white">{name}</div>
+        <div className="text-xl font-medium self-center text-white">{name}</div>
       </div>
 
-      <div className="flex flex-col flex-1 p-5 custom-scrollbar overflow-y-auto gap-4">
+      <div className="flex flex-col flex-1 p-5 scrollable-container overflow-y-auto gap-4">
         {notes.length ? (
           notes.map((note) => (
             <Card key={note.timestamp} note={note} /> // Ensure unique key
@@ -60,8 +67,13 @@ const NotesCard = ({ userId }) => {
           onChange={(e) => setText(e.target.value)}
         />
         <IoMdSend
-          className="text-[#ABABAB] cursor-pointer absolute right-7 bottom-7 text-3xl"
-          onClick={handleAddNote}
+          className={`absolute right-7 bottom-7 text-3xl ${
+            isDisabled
+              ? "text-[#ABABAB] cursor-not-allowed"
+              : "text-[#001F8B] cursor-pointer"
+          }`}
+          onClick={!isDisabled ? handleAddNote : undefined}
+          // Apply 'disabled' styling conditionally
         />
       </div>
     </div>

@@ -5,6 +5,7 @@ const Groups = ({ user, setUserId }) => {
   const name = user?.name;
   const color = user?.color;
   const nameParts = name.split(" ");
+  console.log(user.id);
 
   // Extract the first letter of each part and convert to uppercase
   const initials = nameParts
@@ -14,16 +15,16 @@ const Groups = ({ user, setUserId }) => {
 
   return (
     <div
-      className="flex items-center gap-6 cursor-pointer"
+      className="flex items-center gap-5 cursor-pointer min-w-fit"
       onClick={() => setUserId(user.id)}
     >
       <div
-        className="flex justify-center self-center items-center h-16 w-16 max-h-16 font-normal font-roboto text-lg rounded-full text-white tracking-wider"
-        style={{ backgroundColor: color }} // Apply background color dynamically
+        className="flex justify-center self-center items-center min-w-14  min-h-14 max-h-16 font-normal font-roboto  rounded-full text-white tracking-wider"
+        style={{ backgroundColor: color }}
       >
         {initials}
       </div>
-      <div className="font-normal font-roboto tracking-wide text-lg">
+      <div className="font-normal font-roboto tracking-wide whitespace-nowrap text-lg">
         {name}
       </div>
     </div>

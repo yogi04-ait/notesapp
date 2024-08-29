@@ -38,28 +38,38 @@ const CreateGroup = ({ setModal }) => {
     setModal(false);
   };
 
+  // Handle key down events
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleCreate();
+    }
+  };
+
   return (
     <>
       <div className="fixed inset-0 bg-black bg-opacity-5 custom-backdrop z-40" />
 
-      <div className="m-auto w-[44%] h-[42%] bg-white font-semibold fixed inset-0 font-roboto tracking-wider p-5 px-7 flex flex-col rounded-lg gap-6 z-50">
-        <h2 className="text-2xl">Create New Group</h2>
+      <div className="m-auto min-w-96 h-[250px] w-[70%] max-w-[560px] bg-white font-semibold fixed inset-0 font-roboto tracking-wider p-5 px-7 flex flex-col rounded-lg gap-6 z-50">
+        <h2 className="text-base md:text-2xl">Create New Group</h2>
         <div className="flex gap-5">
-          <p className="text-xl self-center">Group Name</p>
+          <p className="text-base sm:text-lg self-center whitespace-nowrap">
+            Group Name
+          </p>
           <input
-            className="rounded-3xl outline-none border font-normal p-[6px] px-5 text-base w-72"
+            className="rounded-2xl outline-none border font-normal px-4 py-2 text-sm sm:text-base w-72"
             placeholder="Enter group name"
             value={groupName}
             onChange={(e) => setGroupName(e.target.value)}
+            onKeyDown={handleKeyDown} // Attach key down handler
           />
         </div>
-        <div className="flex gap-4 text-lg">
-          <p className="self-center">Choose Colour</p>
+        <div className="flex gap-4 text-base sm:text-lg">
+          <p className="self-center whitespace-nowrap">Choose Colour</p>
           <div className="flex gap-3">
             {colors.map((color, index) => (
               <div
                 key={index}
-                className={`h-8 w-8 rounded-full cursor-pointer ${
+                className={`h-4 w-4 self-center sm:h-8 sm:w-8 rounded-full cursor-pointer ${
                   color === selectedColor ? "border-blue-600 border-2" : ""
                 }`}
                 style={{ backgroundColor: color }} // Apply background color using inline style
@@ -69,7 +79,7 @@ const CreateGroup = ({ setModal }) => {
           </div>
         </div>
         <button
-          className="px-8 rounded-xl self-end py-1 text-white bg-[#001F8B]"
+          className="mx-12 sm:mx-0 px-8 sm:px-10 font-normal rounded-xl sm:self-end py-1 text-white bg-[#001F8B]"
           onClick={handleCreate}
         >
           Create

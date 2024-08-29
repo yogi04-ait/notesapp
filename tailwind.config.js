@@ -6,6 +6,9 @@ module.exports = {
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'],
       },
+      screens: {
+        'xs': '280px', // Custom breakpoint for 420px
+      },
     },
   },
   plugins: [],

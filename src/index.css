@@ -11,29 +11,50 @@
   border-radius: 50%;
 }
 
-/* For Webkit browsers (Chrome, Safari) */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 3px; /* Adjust the width as needed */
-  border-radius: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-horizontal {
-  height: 2px; /* Adjust the height as needed */
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: #929191; /* Track color */
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #b40f0f; /* Handle color */
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Handle color on hover */
-}
-
 .custom-backdrop {
   backdrop-filter: blur(0.5px); /* Adjust the blur value as needed */
   background-color: rgba(0, 0, 0, 0.3); /* Adjust opacity */
+}
+
+/* Styling for WebKit Browsers (Chrome, Safari) */
+.scrollable-container {
+  overflow: auto; /* Ensure scrollbars are visible */
+}
+
+/* Style the vertical scrollbar */
+.scrollable-container::-webkit-scrollbar {
+  width: 4px; /* Width of the vertical scrollbar */
+}
+
+/* Style the horizontal scrollbar */
+.scrollable-container::-webkit-scrollbar {
+  height: 4px; /* Height of the horizontal scrollbar */
+}
+
+/* Style the track (background of the scrollbar) */
+.scrollable-container::-webkit-scrollbar-track {
+  background: #cccccc; /* Background color of the track */
+  border-radius: 10px; /* Border radius of the track */
+}
+
+/* Style the thumb (the draggable part of the scrollbar) */
+.scrollable-container::-webkit-scrollbar-thumb {
+  background: #ffffff; /* Background color of the thumb */
+  border-radius: 10px; /* Border radius of the thumb */
+}
+
+/* Adjust the height of the thumb */
+.scrollable-container::-webkit-scrollbar-thumb {
+  height: 40px; /* Adjust the height of the vertical scrollbar thumb */
+}
+
+/* Style the thumb on hover */
+.scrollable-container::-webkit-scrollbar-thumb:hover {
+  background: #dddddd; /* Darker background color of the thumb on hover */
+}
+
+/* Styling for Firefox */
+.scrollable-container {
+  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: #ffffff #cccccc; /* Thumb color and track color */
 }

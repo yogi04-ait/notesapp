@@ -11,11 +11,15 @@ function App() {
 
   return (
     <div className="flex h-screen w-screen">
-      <div className="w-[30%]">
+      <div className={`${userId ? "hidden" : "w-full"} sm:w-[30%] sm:block`}>
         <Groupsection setModal={setModal} setUserId={setUserId} />
       </div>
-      <div className="w-[70%]">
-        {userId === null ? <Screen /> : <NotesCard userId={userId} />}
+      <div className={`${userId ? "w-full" : "hidden"} sm:w-[70%] sm:block  `}>
+        {userId === null ? (
+          <Screen />
+        ) : (
+          <NotesCard userId={userId} setUserId={setUserId} />
+        )}
       </div>
       {modal && <Creategroup setModal={setModal} />}
     </div>
